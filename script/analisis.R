@@ -131,6 +131,41 @@ summary(data)
 # HASIL AKHIR
 # =========================
 
-cat("Naive Estimation =", naive, "/n")
+# =========================
+# NAIVE ESTIMATION
+# =========================
 
-cat("Weighted Estimation =", weighted_estimation, "/n")
+# Menghitung jumlah responden yang puas
+# (jawaban kepuasan >= 4)
+
+puas <- sum(data$y >= 4)
+
+# Menghitung total responden
+
+n <- nrow(data)
+
+# Rumus Naive Estimation
+# P̂ = Jumlah Setuju / Total Responden
+
+naive <- puas/n
+
+# Menampilkan hasil
+
+naive
+
+cat("Naive Estimation =", naive, "\n")
+# =========================
+# WEIGHTING SEDERHANA
+# =========================
+
+prop_pop <- 0.50
+
+prop_sample <- 0.147
+
+w <- prop_pop/prop_sample
+
+w
+
+# Menampilkan hasil weighting
+
+cat("Bobot Weighting =", w, "\n")
