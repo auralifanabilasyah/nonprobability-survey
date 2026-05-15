@@ -1,19 +1,23 @@
-# MEMANGGIL PACKAGE
 library(readxl)
 
+# =========================
 # IMPORT DATA EXCEL
+# =========================
+
 data <- read_excel("C:/Users/ASUS/Documents/abel/teksam fiks.xlsx")
 
-# MELIHAT NAMA KOLOM
+# =========================
+# MELIHAT NAMA KOLOM DAN DATA
+# =========================
+
 names(data)
 
-# MELIHAT DATA
 head(data)
 
 # =========================
-# RENAME VARIABEL PERTANYAAN
-# =========================
+# RENAME VARIABEL
 # Timestamp dan Nama Lengkap tidak digunakan
+# =========================
 
 names(data)[6] <- "x1"
 names(data)[7] <- "x2"
@@ -67,7 +71,7 @@ sd(data$y)
 # GRAFIK JENIS KELAMIN
 # =========================
 
-png("grafik-gender.png")
+png("grafik-gender.png", width = 800, height = 600)
 
 barplot(table(data$`jenis Kelamin`),
         main = "Distribusi Jenis Kelamin",
@@ -80,7 +84,7 @@ dev.off()
 # GRAFIK SEMESTER
 # =========================
 
-png("grafik-semester.png")
+png("grafik-semester.png", width = 800, height = 600)
 
 barplot(table(data$Semester),
         main = "Distribusi Semester",
@@ -93,49 +97,7 @@ dev.off()
 # NAIVE ESTIMATION
 # =========================
 
-puas <- sum(data$y >= 4)
-
-n <- nrow(data)
-
-naive <- puas/n
-
-naive
-
-# =========================
-# WEIGHTING SEDERHANA
-# =========================
-
-prop_pop <- 0.50
-
-prop_sample <- 0.147
-
-w <- prop_pop/prop_sample
-
-w
-
-# =========================
-# WEIGHTED ESTIMATION
-# =========================
-
-weighted_estimation <- naive * w
-
-weighted_estimation
-
-# =========================
-# RINGKASAN DATA
-# =========================
-
-summary(data)
-
-# =========================
-# HASIL AKHIR
-# =========================
-
-# =========================
-# NAIVE ESTIMATION
-# =========================
-
-# Menghitung jumlah responden yang puas
+# Menghitung jumlah responden puas
 # (jawaban kepuasan >= 4)
 
 puas <- sum(data$y >= 4)
@@ -153,19 +115,38 @@ naive <- puas/n
 
 naive
 
-cat("Naive Estimation =", naive, "\n")
+cat("Naive Estimation =", naive, "/n")
+
 # =========================
 # WEIGHTING SEDERHANA
 # =========================
 
+# Proporsi populasi diasumsikan 50%
+
 prop_pop <- 0.50
+
+# Proporsi sampel laki-laki
 
 prop_sample <- 0.147
 
-w <- prop_pop/prop_sample
+# Menghitung bobot
 
-w
+w <- prop_pop/prop_sample
 
 # Menampilkan hasil weighting
 
-cat("Bobot Weighting =", w, "\n")
+w
+
+cat("Bobot Weighting =", w, "/n")
+
+# =========================
+# RINGKASAN DATA
+# =========================
+
+summary(data)
+
+# =========================
+# MELIHAT LOKASI FILE GRAFIK
+# =========================
+
+getwd()w, "\n")
