@@ -4,15 +4,17 @@
 
 ---
 
-# Latar Belakang
+# Deskripsi Penelitian
 
-Perkembangan teknologi informasi memberikan kemudahan bagi mahasiswa dalam memperoleh berbagai sumber referensi ilmiah secara online. Salah satu platform yang paling sering digunakan dalam pencarian jurnal ilmiah adalah Google Scholar. Platform ini menyediakan berbagai artikel, jurnal, skripsi, prosiding, dan publikasi ilmiah lainnya yang dapat membantu mahasiswa dalam menunjang kegiatan akademik.
+Perkembangan teknologi informasi memberikan pengaruh besar terhadap proses pembelajaran di perguruan tinggi, khususnya dalam memperoleh sumber referensi ilmiah secara online. Mahasiswa saat ini lebih sering memanfaatkan platform digital untuk mencari jurnal, artikel, skripsi, prosiding, dan berbagai publikasi ilmiah lainnya yang mendukung kegiatan akademik.
 
-Mahasiswa Program Studi Statistika membutuhkan referensi ilmiah yang relevan dan terpercaya untuk membantu proses pembelajaran, penyusunan tugas, praktikum, maupun penelitian. Penggunaan Google Scholar dianggap lebih praktis karena mahasiswa dapat mencari jurnal dengan mudah hanya menggunakan kata kunci tertentu. Selain itu, Google Scholar juga menyediakan banyak pilihan referensi ilmiah dari berbagai bidang ilmu sehingga memudahkan mahasiswa dalam memperoleh sumber informasi akademik.
+Salah satu platform yang paling sering digunakan mahasiswa adalah Google Scholar. Google Scholar merupakan layanan pencarian literatur ilmiah yang menyediakan berbagai referensi dari banyak bidang ilmu. Platform ini dianggap mempermudah mahasiswa dalam menemukan sumber referensi hanya dengan menggunakan kata kunci tertentu.
 
-Meskipun demikian, dalam penggunaannya masih terdapat beberapa kendala yang dirasakan mahasiswa, seperti kesulitan menemukan jurnal yang sesuai dengan topik, keterbatasan akses pada beberapa jurnal tertentu, serta banyaknya hasil pencarian yang terkadang membuat mahasiswa kesulitan memilih referensi yang relevan.
+Mahasiswa Program Studi Statistika memerlukan referensi ilmiah yang relevan dan terpercaya untuk membantu proses pembelajaran, penyusunan tugas, praktikum, hingga penelitian. Penggunaan Google Scholar dinilai praktis karena mampu menyediakan banyak pilihan jurnal secara cepat dan mudah diakses kapan saja.
 
-Oleh karena itu, dilakukan survei untuk mengetahui bagaimana tingkat kepuasan mahasiswa Program Studi Statistika terhadap penggunaan Google Scholar dalam pencarian jurnal ilmiah.
+Meskipun demikian, dalam penggunaannya masih terdapat beberapa kendala yang dirasakan mahasiswa, seperti hasil pencarian yang kurang sesuai dengan topik tertentu, banyaknya jurnal yang muncul sehingga menyulitkan proses pemilihan referensi, serta adanya beberapa jurnal yang aksesnya terbatas.
+
+Oleh karena itu, penelitian ini dilakukan untuk mengetahui bagaimana tingkat kepuasan mahasiswa Program Studi Statistika terhadap penggunaan Google Scholar dalam pencarian jurnal ilmiah.
 
 ---
 
@@ -21,7 +23,8 @@ Oleh karena itu, dilakukan survei untuk mengetahui bagaimana tingkat kepuasan ma
 1. Mengetahui tingkat kepuasan mahasiswa terhadap penggunaan Google Scholar.
 2. Mengetahui kemudahan penggunaan Google Scholar dalam pencarian jurnal ilmiah.
 3. Mengetahui manfaat Google Scholar dalam membantu kegiatan akademik mahasiswa.
-4. Mengetahui hasil naive estimation dan weighting sederhana berdasarkan data survei.
+4. Mengetahui hasil estimasi sederhana menggunakan naive estimation.
+5. Mengetahui hasil weighting sederhana pada data survei.
 
 ---
 
@@ -29,9 +32,15 @@ Oleh karena itu, dilakukan survei untuk mengetahui bagaimana tingkat kepuasan ma
 
 Penelitian ini menggunakan metode non-probability sampling dengan teknik convenience sampling.
 
-Convenience sampling merupakan teknik pengambilan sampel berdasarkan kemudahan peneliti dalam memperoleh responden yang bersedia mengisi kuesioner penelitian.
+Convenience sampling merupakan teknik pengambilan sampel berdasarkan kemudahan peneliti dalam memperoleh responden yang bersedia mengisi kuesioner penelitian. Teknik ini dipilih karena pengumpulan data dilakukan secara online menggunakan Google Form sehingga lebih praktis dan efisien.
 
-Pengumpulan data dilakukan menggunakan Google Form yang disebarkan kepada mahasiswa Program Studi Statistika.
+---
+
+# Link Kuesioner
+
+Kuesioner penelitian dapat diakses melalui link berikut:
+
+[Klik di sini untuk membuka kuesioner](https://forms.gle/VHFJ2z83TLsiU7hy7)
 
 ---
 
@@ -39,11 +48,11 @@ Pengumpulan data dilakukan menggunakan Google Form yang disebarkan kepada mahasi
 
 | Variabel | Keterangan |
 |---|---|
-| Semester | Semester mahasiswa |
-| Jenis Kelamin | Laki-laki atau perempuan |
-| x1 | Kemudahan akses Google Scholar |
+| Semester | Semester mahasiswa responden |
+| Jenis Kelamin | Jenis kelamin responden |
+| x1 | Kemudahan mengakses Google Scholar |
 | x2 | Kemudahan mencari jurnal menggunakan kata kunci |
-| x3 | Kecepatan Google Scholar dalam menampilkan hasil pencarian |
+| x3 | Kecepatan hasil pencarian Google Scholar |
 | x4 | Kesesuaian hasil pencarian dengan topik |
 | x5 | Banyaknya pilihan jurnal yang tersedia |
 | x6 | Google Scholar membantu tugas atau penelitian |
@@ -83,29 +92,12 @@ nonprobability-survey/
 # Import Dataset
 
 ```r
-# INSTALL PACKAGE
-install.packages("readxl")
-
-# MEMANGGIL PACKAGE
 library(readxl)
 
-# IMPORT DATA
-data <- read_excel("data/teksam fiks.xlsx")
+data <- read_excel("C:/Users/ASUS/Documents/abel/teksam fiks.xlsx")
 ```
 
-Syntax digunakan untuk membaca dataset survei ke dalam RStudio.
-
----
-
-# Melihat Nama Kolom dan Data
-
-```r
-names(data)
-
-head(data)
-```
-
-Syntax digunakan untuk melihat nama variabel dan isi data penelitian.
+Syntax digunakan untuk membaca dataset survei dari file Excel ke dalam RStudio.
 
 ---
 
@@ -121,11 +113,11 @@ names(data)[11] <- "x6"
 names(data)[12] <- "y"
 ```
 
-Syntax digunakan untuk mempermudah proses analisis data.
+Rename variabel dilakukan agar proses analisis lebih mudah dan syntax menjadi lebih sederhana.
 
 ---
 
-# Frekuensi Jenis Kelamin
+# Analisis Frekuensi Jenis Kelamin
 
 ```r
 table(data$`jenis Kelamin`)
@@ -133,11 +125,20 @@ table(data$`jenis Kelamin`)
 prop.table(table(data$`jenis Kelamin`))*100
 ```
 
-Syntax digunakan untuk menghitung jumlah dan persentase responden berdasarkan jenis kelamin.
+## Hasil
+
+| Jenis Kelamin | Frekuensi | Persentase |
+|---|---|---|
+| Perempuan | 29 | 85.3% |
+| Laki-laki | 5 | 14.7% |
+
+## Interpretasi
+
+Mayoritas responden dalam penelitian ini berjenis kelamin perempuan sebanyak 85,3%, sedangkan responden laki-laki sebesar 14,7%.
 
 ---
 
-# Frekuensi Semester
+# Analisis Frekuensi Semester
 
 ```r
 table(data$Semester)
@@ -145,7 +146,17 @@ table(data$Semester)
 prop.table(table(data$Semester))*100
 ```
 
-Syntax digunakan untuk menghitung jumlah dan persentase responden berdasarkan semester.
+## Hasil
+
+| Semester | Frekuensi | Persentase |
+|---|---|---|
+| Semester 2 | 5 | 14.7% |
+| Semester 4 | 26 | 76.5% |
+| Semester 6 | 3 | 8.8% |
+
+## Interpretasi
+
+Sebagian besar responden berasal dari semester 4 sebesar 76,5%. Hal ini menunjukkan bahwa mahasiswa semester 4 lebih aktif dalam pengisian survei.
 
 ---
 
@@ -161,7 +172,17 @@ mean(data$x6)
 mean(data$y)
 ```
 
-Syntax digunakan untuk menghitung nilai rata-rata setiap variabel penelitian.
+## Hasil Mean
+
+| Variabel | Mean |
+|---|---|
+| x1 | 4.12 |
+| x2 | 3.74 |
+| x3 | 4.03 |
+| x4 | 3.44 |
+| x5 | 3.65 |
+| x6 | 4.00 |
+| y | 3.79 |
 
 ---
 
@@ -177,45 +198,51 @@ sd(data$x6)
 sd(data$y)
 ```
 
-Syntax digunakan untuk menghitung standar deviasi setiap variabel penelitian.
+## Hasil Standar Deviasi
+
+| Variabel | Standar Deviasi |
+|---|---|
+| x1 | 0.64 |
+| x2 | 0.75 |
+| x3 | 0.72 |
+| x4 | 0.70 |
+| x5 | 0.73 |
+| x6 | 0.65 |
+| y | 0.73 |
 
 ---
 
-# Grafik Jenis Kelamin
+# Interpretasi Analisis Deskriptif
 
-```r
-png("grafik-gender.png")
+Variabel kemudahan mengakses Google Scholar memiliki nilai rata-rata tertinggi sebesar 4,12. Hal ini menunjukkan bahwa mahasiswa merasa Google Scholar mudah digunakan dan mudah diakses kapan saja.
 
-barplot(table(data$`jenis Kelamin`),
-        main = "Distribusi Jenis Kelamin",
-        xlab = "Jenis Kelamin",
-        ylab = "Frekuensi")
+Variabel kecepatan pencarian memperoleh nilai rata-rata sebesar 4,03 yang menunjukkan bahwa Google Scholar mampu menampilkan hasil pencarian jurnal dengan cepat.
 
-dev.off()
-```
+Variabel membantu tugas atau penelitian memperoleh nilai mean sebesar 4,00 sehingga dapat disimpulkan bahwa Google Scholar sangat membantu mahasiswa dalam kegiatan akademik.
 
-Syntax digunakan untuk membuat grafik distribusi jenis kelamin.
+Sementara itu, variabel kesesuaian hasil pencarian memiliki nilai mean paling rendah yaitu sebesar 3,44. Hal ini menunjukkan bahwa beberapa mahasiswa masih merasa hasil pencarian belum sepenuhnya sesuai dengan topik yang dicari.
+
+Nilai standar deviasi seluruh variabel berada di bawah 1 sehingga jawaban responden relatif homogen atau tidak terlalu bervariasi.
 
 ---
 
-# Grafik Semester
+# Visualisasi Data
 
-```r
-png("grafik-semester.png")
+## Grafik Distribusi Jenis Kelamin
 
-barplot(table(data$Semester),
-        main = "Distribusi Semester",
-        xlab = "Semester",
-        ylab = "Frekuensi")
+![Grafik Gender](output/grafik-gender.png)
 
-dev.off()
-```
+---
 
-Syntax digunakan untuk membuat grafik distribusi semester.
+## Grafik Distribusi Semester
+
+![Grafik Semester](output/grafik-semester.png)
 
 ---
 
 # Naive Estimation
+
+Naive estimation digunakan untuk memperoleh estimasi sederhana berdasarkan proporsi responden yang merasa puas terhadap penggunaan Google Scholar.
 
 Rumus naive estimation:
 
@@ -224,33 +251,30 @@ Rumus naive estimation:
 \]
 
 ```r
-# Menghitung jumlah responden puas
 puas <- sum(data$y >= 4)
 
-# Menghitung total responden
 n <- nrow(data)
 
-# Naive Estimation
 naive <- puas/n
 
 naive
-
-cat("Naive Estimation =", naive, "\n")
 ```
 
-Hasil naive estimation:
+## Hasil
 
 \[
 0.7647 = 76.47\%
 \]
 
-Interpretasi:
+## Interpretasi
 
-Hasil tersebut menunjukkan bahwa sekitar 76,47% responden merasa puas terhadap penggunaan Google Scholar dalam pencarian jurnal ilmiah.
+Hasil naive estimation menunjukkan bahwa sekitar 76,47% responden merasa puas terhadap penggunaan Google Scholar dalam pencarian jurnal ilmiah.
 
 ---
 
 # Weighting Sederhana
+
+Weighting digunakan untuk memberikan pembobotan sederhana terhadap sampel berdasarkan proporsi populasi dan proporsi sampel.
 
 Rumus weighting:
 
@@ -266,97 +290,26 @@ prop_sample <- 0.147
 w <- prop_pop/prop_sample
 
 w
-
-cat("Bobot Weighting =", w, "\n")
 ```
 
-Hasil weighting:
+## Hasil
 
 \[
-3.40
+3.401361
 \]
 
-Interpretasi:
+## Interpretasi
 
-Hasil weighting menunjukkan bahwa kelompok laki-laki memperoleh bobot lebih besar karena jumlah responden laki-laki dalam sampel lebih sedikit dibandingkan proporsi populasi.
-
----
-
-# Hasil Analisis dan Interpretasi
-
-## Karakteristik Responden
-
-Jumlah responden dalam penelitian ini sebanyak 34 mahasiswa Program Studi Statistika.
-
-### Distribusi Jenis Kelamin
-
-| Jenis Kelamin | Frekuensi | Persentase |
-|---|---|---|
-| Perempuan | 29 | 85,3% |
-| Laki-laki | 5 | 14,7% |
-
-Mayoritas responden berjenis kelamin perempuan sebesar 85,3%, sedangkan responden laki-laki sebesar 14,7%.
-
----
-
-### Distribusi Semester
-
-| Semester | Frekuensi | Persentase |
-|---|---|---|
-| Semester 2 | 5 | 14,7% |
-| Semester 4 | 26 | 76,5% |
-| Semester 6 | 3 | 8,8% |
-
-Mayoritas responden berasal dari semester 4 sebesar 76,5%.
-
----
-
-# Hasil Analisis Deskriptif
-
-| Variabel | Mean | Standar Deviasi | Interpretasi |
-|---|---|---|---|
-| x1 | 4.12 | 0.64 | Mahasiswa merasa puas terhadap kemudahan akses Google Scholar |
-| x2 | 3.74 | 0.75 | Mahasiswa cukup puas terhadap kemudahan pencarian jurnal |
-| x3 | 4.03 | 0.72 | Mahasiswa merasa puas terhadap kecepatan pencarian |
-| x4 | 3.44 | 0.70 | Mahasiswa cukup puas terhadap kesesuaian hasil pencarian |
-| x5 | 3.65 | 0.73 | Mahasiswa cukup puas terhadap banyaknya pilihan jurnal |
-| x6 | 4.00 | 0.65 | Google Scholar membantu tugas dan penelitian mahasiswa |
-| y | 3.79 | 0.73 | Tingkat kepuasan mahasiswa tergolong cukup baik |
-
----
-
-# Interpretasi Analisis
-
-Berdasarkan hasil analisis deskriptif, variabel dengan nilai rata-rata tertinggi terdapat pada variabel kemudahan akses Google Scholar (x1) sebesar 4,12. Hal ini menunjukkan bahwa mahasiswa merasa Google Scholar mudah diakses kapan saja saat dibutuhkan.
-
-Variabel kecepatan pencarian (x3) juga memperoleh nilai rata-rata yang tinggi sebesar 4,03. Hal ini menunjukkan bahwa mahasiswa merasa Google Scholar mampu menampilkan hasil pencarian jurnal dengan cepat dan efisien.
-
-Selain itu, variabel membantu tugas atau penelitian (x6) memperoleh nilai mean sebesar 4,00 yang menunjukkan bahwa Google Scholar sangat membantu mahasiswa dalam menunjang kegiatan akademik.
-
-Sementara itu, variabel kesesuaian hasil pencarian (x4) memiliki nilai rata-rata paling rendah yaitu sebesar 3,44. Hal ini menunjukkan bahwa sebagian mahasiswa masih mengalami kesulitan dalam memperoleh hasil pencarian yang benar-benar sesuai dengan topik yang dicari.
-
-Nilai standar deviasi seluruh variabel berada di bawah 1, sehingga dapat disimpulkan bahwa jawaban responden relatif homogen atau tidak terlalu bervariasi.
-
----
-
-# Visualisasi
-
-## Grafik Distribusi Jenis Kelamin
-
-![Grafik Gender](output/grafik-gender.png)
-
----
-
-## Grafik Distribusi Semester
-
-![Grafik Semester](output/grafik-semester.png)
+Hasil weighting menunjukkan bahwa kelompok laki-laki memperoleh bobot lebih besar karena jumlah responden laki-laki dalam sampel lebih sedikit dibandingkan proporsi populasi yang diasumsikan.
 
 ---
 
 # Kesimpulan
 
-Berdasarkan hasil penelitian dapat disimpulkan bahwa mahasiswa Program Studi Statistika secara umum merasa cukup puas terhadap penggunaan Google Scholar dalam pencarian jurnal ilmiah.
+Berdasarkan hasil penelitian dapat disimpulkan bahwa mahasiswa Program Studi Statistika secara umum merasa puas terhadap penggunaan Google Scholar dalam pencarian jurnal ilmiah.
 
-Google Scholar dinilai mudah diakses, cepat dalam menampilkan hasil pencarian, serta membantu mahasiswa dalam memperoleh referensi ilmiah untuk kebutuhan akademik.
+Google Scholar dinilai mudah diakses, cepat dalam menampilkan hasil pencarian, serta membantu mahasiswa dalam memperoleh referensi ilmiah untuk tugas dan penelitian.
 
-Namun demikian, masih terdapat beberapa kendala terutama pada kesesuaian hasil pencarian dengan topik yang dicari sehingga mahasiswa terkadang perlu menggunakan kata kunci yang lebih spesifik untuk memperoleh referensi yang sesuai.
+Hasil naive estimation menunjukkan bahwa sekitar 76,47% responden merasa puas terhadap penggunaan Google Scholar. Selain itu, hasil weighting sederhana menunjukkan adanya perbedaan proporsi antara sampel dan populasi sehingga diperlukan pembobotan untuk memperoleh estimasi yang lebih seimbang.
+
+Meskipun demikian, masih terdapat beberapa kendala terutama pada kesesuaian hasil pencarian dengan topik tertentu. Oleh karena itu, mahasiswa perlu menggunakan kata kunci yang lebih spesifik agar hasil pencarian menjadi lebih relevan.
